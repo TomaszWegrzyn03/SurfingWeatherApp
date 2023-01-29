@@ -18,6 +18,7 @@ public class MainController {
     MainService mainService;
 
 
+    //samo /{date}" daje ci ze trzeba wbic do localhost:port/data, to zdecydowanie za malo, musi byc cos przed np weather/{date}
     @GetMapping("/{date}")
     public City getBestCityToSurf(@PathVariable("date") String date) throws URISyntaxException, IOException, InterruptedException {
         return mainService.getBestCityToSurf(date);
