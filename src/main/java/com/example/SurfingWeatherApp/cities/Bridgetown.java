@@ -6,6 +6,7 @@ import com.example.SurfingWeatherApp.entities.Data;
 import java.util.ArrayList;
 import java.util.List;
 
+//klasy mozna bylo zrobic jako enum z polami
 public class Bridgetown extends City {
 
     private List<Data> data = new ArrayList<>();
@@ -19,6 +20,7 @@ public class Bridgetown extends City {
 
     @Override
     public String getCountry_code() {
+        //bezsensownie jest inicjalizowac zmienna zeby pozniej ja zwracac
         String country_code = "BB";
         return country_code;
     }
@@ -30,6 +32,7 @@ public class Bridgetown extends City {
 
     @Override
     public String getLat() {
+        //bezsensownie jest inicjalizowac zmienna zeby pozniej ja zwracac, zrob od razu return "13.10732";
         String lat = "13.10732";
         return lat;
     }
@@ -44,7 +47,7 @@ public class Bridgetown extends City {
     public void setData(List<Data> data) {
         this.data = data;
     }
-
+//za duzo enterow po ostatniej metodzie, dbaj o formatowanie
 
 
 

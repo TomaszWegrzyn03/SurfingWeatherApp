@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Data {
 
     private String datetime;
+    //camelCase
     private Float wind_spd;
     private Float temp;
 
@@ -22,6 +23,7 @@ public class Data {
         return wind_spd;
     }
 
+    //nieuzywany setter
     public void setWind_spd(Float wind_spd) {
         this.wind_spd = wind_spd;
     }

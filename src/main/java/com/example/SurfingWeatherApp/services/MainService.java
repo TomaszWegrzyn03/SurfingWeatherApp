@@ -2,6 +2,7 @@ package com.example.SurfingWeatherApp.services;
 import com.example.SurfingWeatherApp.cities.*;
 import com.example.SurfingWeatherApp.entities.City;
 import com.example.SurfingWeatherApp.entities.Data;
+//nieuzywany import
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,7 @@ public class MainService  {
         List<City> mappedCities = new ArrayList<>();
         HttpClient httpClient = HttpClient.newHttpClient();
 
+        //formatowanie tej czesci kodu sie kodu sie kompltnie rozjechalo, a wystarczylo zrobic ctrl+alt+l
         for(City city:cities){
             String cityName;
             if(Objects.equals(city.getCity_name(), "Le Hochet")) { cityName = "Le%20Hochet";}
@@ -35,6 +37,7 @@ public class MainService  {
                     .build();
 
             HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
+            //zapomniales po sobie posprzatac, nie zostawiam sout
             System.out.println(getResponse.body());
             City newCity = new ObjectMapper().readerFor(City.class).readValue(getResponse.body());
             City mappedCity = new City(newCity.getCity_name(),newCity.getCountry_code(),newCity.getData(),newCity.getLat(),newCity.getLon());
@@ -44,6 +47,7 @@ public class MainService  {
     }
 
     public City getBestCityToSurf(String date) throws URISyntaxException, IOException, InterruptedException {
+        //jakbys mial wszystkie miasta jako enum to to wszystko byloby 1 linijka
         List<City> cities = new ArrayList<>();
         City Jastarnia = new Jastarnia();
         City Bridgetown = new Bridgetown();
@@ -61,6 +65,7 @@ public class MainService  {
         for(City city:mappedCities){
             for(Data day:city.getData()) {
                 if (Objects.equals(day.getDatetime(), date)) {
+                    //liczby jak 5 18 czy 35 powinno sie przynajmniej wyciagnac jako stale w klasie a najlepiej je wstrzykiwac springiem z pliku properties
                     if (day.getWind_spd() >= 5 && day.getWind_spd() <= 18 && day.getTemp() >= 5 && day.getTemp() <= 35) {
                         highestValue.add((day.getWind_spd() * 3) + day.getTemp());
                     } else {
@@ -71,6 +76,7 @@ public class MainService  {
         }
 
         Float maxVal = Collections.max(highestValue);
+        //mozna uzyc typu prymitywnego
         Integer index = highestValue.indexOf(maxVal);
         City cityToReturn = mappedCities.get(index);
         if(maxVal == 0){
